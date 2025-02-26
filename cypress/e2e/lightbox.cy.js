@@ -83,6 +83,7 @@ context('Test: lightbox.html', () => {
         cy.dataCy('overlay-comment-count').should('have.text', '1')
 
     })
+    
 
     it('Tester le singulier/pluriel en fonction du nombre de commentaire.', () => {
         cy.dataCy('overlay').click()
