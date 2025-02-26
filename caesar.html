@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiffrement César</title>
+    <script src="js/caesar.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        textarea,
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chiffrement César</h1>
+    <form id="cesar-form" data-cy="cypher-form">
+        <label for="input-text">Texte à chiffrer :</label>
+        <textarea id="input-text" name="input-text" data-cy="cypher-input" rows="4" required></textarea>
+        <label for="shift">Décalage :</label>
+        <input type="number" id="shift" name="shift" data-cy="cypher-key" required>
+        <button type="submit" data-cy="submit"  data-cy="cypher-button">Chiffrer</button>
+    </form>
+    <h2>Texte chiffré :</h2>
+    <p id="output-text" data-cy="cypher-result"></p>
+
+    <script>
+        document.getElementById('cesar-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inputText = document.getElementById('input-text').value;
+            const shift = parseInt(document.getElementById('shift').value);
+            const outputText = caesarCipher(inputText, shift);
+            document.getElementById('output-text').textContent = outputText;
+        });
+
+    </script>
+</body>
+</html>
